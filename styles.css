@@ -1,0 +1,51 @@
+.sing-along { --sa-accent: var(--interactive-accent); position: relative; padding: 0; overflow: hidden; height: 100%; }
+.sing-along .sa-layout { height: 100%; overflow-y: auto; padding: 16px 24px 110px 244px; scroll-behavior: auto; overflow-anchor: none; }
+.sing-along .sa-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.sing-along .sa-heading h2 { margin: 0; font-size: 18px; font-weight: 600; }
+.sing-along .sa-heading button { font-size: 12px; flex-shrink: 0; }
+.sing-along .sa-connect { display: flex; gap: 8px; margin-bottom: 10px; }
+.sing-along .sa-connect input { flex: 1; width: 100%; min-width: 0; }
+.sing-along .sa-connect button { font-size: 12px; }
+.sing-along .sa-video { width: 100%; aspect-ratio: 16/9; min-height: 200px; background: var(--background-secondary); overflow: hidden; }
+.sing-along .sa-video webview { width: 100%; height: 100%; min-height: 200px; }
+.sing-along .sa-placeholder { padding: 24px; min-height: 200px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); line-height: 1.8; }
+.sing-along .sa-score { padding-top: 8px; }
+.sing-along .sa-score-nav { color: var(--text-muted); font-size: 12px; padding: 4px 0 12px; }
+.sing-along .sa-lyrics { padding-bottom: 30vh; }
+.sing-along .sa-section { font-size: 13px; color: var(--text-muted); margin: 26px 0 10px; text-align: center; }
+.sing-along .sa-section:first-child { margin-top: 4px; }
+.sing-along button.sa-cue { display: flex; width: 100%; height: auto; padding: 13px 10px; margin: 0 0 5px; text-align: left; white-space: normal; align-items: flex-start; gap: 16px; background: transparent; border: 0;  box-shadow: none; border-radius: 8px; cursor: pointer; transition: background-color 280ms ease; transform: none; text-align: center; justify-content: center; }
+.sing-along button.sa-cue:hover { background: color-mix(in srgb, var(--text-normal) 5%, var(--background-primary)); box-shadow: none; transform: none; }
+.sing-along button.sa-cue:active { background: color-mix(in srgb, var(--text-normal) 10%, var(--background-primary)); box-shadow: none; transform: none; }
+.sing-along button.sa-cue.is-selected { background: color-mix(in srgb, var(--text-normal) 8%, var(--background-primary)); }
+.sing-along button.sa-cue.is-playing { background: color-mix(in srgb, var(--text-normal) 14%, var(--background-primary)); }
+.sing-along .sa-cue-time { width: 72px; flex-shrink: 0; font-size: 12px; font-variant-numeric: tabular-nums; color: var(--text-faint); padding-top: 3px; }
+.sing-along .sa-words { display: flex; flex-direction: column; align-items: center; width: 100%; text-align: center; gap: 6px; min-width: 0; opacity: .74; transition: opacity 280ms ease; }
+.sing-along .sa-romaji { color: var(--text-accent); font-size: 14px; line-height: 1.5; }
+.sing-along .sa-japanese { color: var(--text-normal); font-size: 23px; font-weight: 550; line-height: 1.6; }
+.sing-along .sa-translation { color: var(--text-muted); font-size: 13px; line-height: 1.5; }
+.sing-along .sa-outline { position: absolute; z-index: 3; left: 12px; top: 0; transform: none; display: flex; flex-direction: column; width: 208px; transition: top 320ms cubic-bezier(.22,1,.36,1), max-height 320ms ease; gap: 3px; padding: 8px; max-height: calc(100% - 120px); overflow-y: auto; border: 1px solid var(--background-modifier-border); border-radius: 14px; background: var(--background-secondary); box-shadow: 0 4px 18px rgba(0,0,0,0.12); }
+.sing-along .sa-outline .sa-section-button { height: auto; min-height: 30px; padding: 6px 3px; font-size: 12px; white-space: normal; background: transparent; border: 0; box-shadow: none; }
+.sing-along .sa-outline .sa-section-button.is-current { color: var(--text-on-accent); background: var(--sa-accent); }
+.sing-along .sa-dock { position: absolute; z-index: 4; left: 50%; bottom: 16px; transform: translateX(-50%); width: max-content; max-width: calc(100% - 24px); padding: 7px; border: 0; border-radius: 14px; background: var(--background-secondary); box-shadow: 0 12px 36px rgba(0,0,0,0.38); }
+.sing-along .sa-controls { display: flex; align-items: center; gap: 6px; }
+.sing-along .sa-controls > button { font-size: 13px; height: 34px; padding: 0 12px; box-shadow: none; border-radius: 8px; }
+.sing-along button.is-on { color: var(--text-on-accent); background: var(--sa-accent); }
+
+.sing-along .sa-controls .sa-speed { height: 34px; min-width: 66px; padding: 0 8px; font-size: 13px; border-radius: 8px; box-shadow: none; }
+
+.sing-along:focus, .sing-along:focus-visible,
+.sing-along :focus, .sing-along :focus-visible { outline: none !important; box-shadow: none !important; }
+.sing-along.is-mini-player .sa-video webview { position: fixed; width: 208px; height: 117px; min-height: 0; z-index: 5; border: 0; border-radius: 10px; overflow: hidden; box-shadow: none; }
+.sing-along .sa-outline { box-sizing: border-box; }
+
+.sing-along .sa-cue.is-playing .sa-words { opacity: 1; animation: sa-cue-arrive 300ms ease-out; }
+@keyframes sa-cue-arrive { from { opacity: .6; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+.sing-along .sa-dock::before, .sing-along .sa-dock::after { display: none; }
+@media (prefers-reduced-motion: reduce) { .sing-along .sa-cue, .sing-along .sa-words { transition: none; animation: none !important; } }
+
+.sing-along.is-mini-player .sa-video webview { animation: sa-mini-appear 280ms ease-out; }
+@keyframes sa-mini-appear { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .sing-along .sa-outline { transition: none; } .sing-along .sa-video webview { animation: none !important; } }
+
+.sing-along .sa-outline:empty { display: none; }

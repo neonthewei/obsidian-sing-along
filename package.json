@@ -1,0 +1,14 @@
+{
+  "name": "obsidian-sing-along",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Obsidian YouTube 逐句學唱播放器",
+  "scripts": {
+    "build": "node build.mjs",
+    "test": "node --test test/*.test.cjs && python3 -m unittest discover -s test -p \"test_*.py\"",
+    "install-plugin": "node build.mjs --install"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2"
+  }
+}
