@@ -17,6 +17,23 @@ Not in the community store yet. Install with [BRAT](https://github.com/TfTHacker
 
 BRAT keeps the plugin updated when a new release is published.
 
+### Let an AI assistant walk you through it
+
+This repo includes an agent skill, [`skills/sing-along`](skills/sing-along/SKILL.md), that guides you step by step: checks your Mac, installs the plugin, creates an empty lyric note, runs the first alignment and fixes common errors. It never fetches or writes song lyrics; you paste those yourself.
+
+```bash
+npx skills add neonthewei/obsidian-sing-along
+```
+
+Or copy it by hand for Claude Code:
+
+```bash
+git clone https://github.com/neonthewei/obsidian-sing-along /tmp/sing-along
+mkdir -p ~/.claude/skills && cp -r /tmp/sing-along/skills/sing-along ~/.claude/skills/
+```
+
+Then tell your assistant: "Help me set up Sing Along".
+
 ## Features
 
 - Opening a lyric note (one with a `sing_along_youtube` property) opens the player view automatically. Ordinary notes are untouched.
@@ -111,6 +128,7 @@ Source lives in `src/`. `align.py` is a JSON-over-stdio worker: input `videoId` 
 **Sing Along** 讓你在 Obsidian 裡跟著 YouTube 練唱日文歌：筆記裡放「羅馬拼音／日文／中文」三行歌詞，插件在本機分析影片音訊，自動對上每一句的時間，之後可以點句跳播、跟隨標亮、單句或整段循環。
 
 - 安裝：先在社群插件裝 **BRAT**，命令面板執行「BRAT: Add a beta plugin for testing」，貼上 `neonthewei/obsidian-sing-along`，再到設定啟用 Sing Along。
+- 想讓 AI 一步步帶你裝：執行 `npx skills add neonthewei/obsidian-sing-along`，再跟 Claude Code 說「幫我設定 Sing Along」。這個 skill 不會幫你抓或寫歌詞，歌詞要自己貼。
 - 只支援桌面版，目前只支援 macOS Apple Silicon。
 - 需要先安裝 `uv` 與 `ffmpeg`；第一次使用會下載 Python 套件和約 450 MB 的語音模型，之後使用快取。
 - 音訊、模型與分析結果放在 `~/.cache/obsidian-sing-along/`，不進 vault；vault 裡只會多影片網址和每句上方的隱藏時間註解。
